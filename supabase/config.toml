@@ -1,0 +1,19 @@
+# Konfiguration für die Supabase CLI (lokale Entwicklung & `supabase functions deploy`).
+project_id = "adventskalender"
+
+[auth]
+# Ersteller nutzen die App ohne Passwort: anonyme Anmeldung + Name/E-Mail im Profil.
+enable_anonymous_sign_ins = true
+
+# Die Funktionen prüfen selbst: E-Mail-Links kommen ohne JWT, send-daily nutzt CRON_SECRET.
+[functions.subscribe]
+verify_jwt = false
+
+[functions.confirm-subscription]
+verify_jwt = false
+
+[functions.unsubscribe]
+verify_jwt = false
+
+[functions.send-daily]
+verify_jwt = false

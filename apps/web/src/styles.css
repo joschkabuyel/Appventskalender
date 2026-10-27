@@ -1,0 +1,180 @@
+:root {
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --card-bg: rgba(255, 255, 255, 0.94);
+  --card-text: #2b2118;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; min-height: 100%; }
+
+body {
+  font-family: var(--font);
+  background: #0f2a17;
+  color: #2b2118;
+  -webkit-text-size-adjust: 100%;
+}
+
+button { font: inherit; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.loading {
+  min-height: 100vh; display: grid; place-items: center; font-size: 48px;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse { 50% { transform: scale(1.15); } }
+
+.notice {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 24px 16px; max-width: 480px; margin: 0 auto; color: #fff8e7; text-align: center;
+}
+.notice h1 { font-size: 28px; margin: 0 0 12px; }
+.notice p { line-height: 1.5; margin: 0; }
+
+/* ---- Thema ---- */
+
+.themed {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--text);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.decorations { position: fixed; inset: 0; pointer-events: none; opacity: 0.35; }
+.decorations span { position: absolute; line-height: 1; }
+
+.themed-content {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(32px, env(safe-area-inset-bottom));
+}
+
+.calendar-header { text-align: center; padding: 12px 0 4px; }
+.calendar-header h1 {
+  margin: 0; font-size: clamp(26px, 7vw, 36px); color: var(--accent);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35); overflow-wrap: anywhere;
+}
+.subtitle { margin: 4px 0 0; opacity: 0.85; }
+
+.banner {
+  background: var(--card-bg); color: var(--card-text); border-radius: 12px;
+  padding: 12px 14px; margin: 12px 0; line-height: 1.4; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.progress { text-align: center; margin: 12px 0; font-weight: 600; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+
+/* ---- Türchen ---- */
+
+.door-grid {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+
+.door {
+  position: relative; width: 100%; aspect-ratio: 1; border-radius: 12px;
+  border: 3px solid var(--door-border);
+  background-color: var(--door-bg);
+  background-image: var(--door-image);
+  background-size: cover; background-position: center;
+  color: var(--door-text);
+  cursor: pointer; padding: 0;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.door:not(:disabled):hover, .door:not(:disabled):focus-visible { transform: translateY(-2px) scale(1.03); }
+.door:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.door-number {
+  font-size: clamp(22px, 7vw, 32px); font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.door-badge { position: absolute; top: 4px; right: 6px; font-size: 13px; }
+
+.door-locked { cursor: not-allowed; filter: saturate(0.4); opacity: 0.6; }
+
+.door-opened {
+  background-color: var(--door-opened);
+  border-style: dashed;
+  transform: perspective(300px) rotateY(-14deg);
+  transform-origin: left center;
+}
+.door-opened:not(:disabled):hover { transform: perspective(300px) rotateY(-20deg); }
+
+.door-today {
+  box-shadow: 0 0 0 3px var(--accent), 0 0 22px var(--accent);
+  animation: glow 2s ease-in-out infinite;
+}
+@keyframes glow { 50% { box-shadow: 0 0 0 3px var(--accent), 0 0 6px var(--accent); } }
+
+.door-today-label {
+  position: absolute; bottom: 4px; left: 0; right: 0; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+
+.legend {
+  list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+  padding: 0; margin: 14px 0; font-size: 14px; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+.legend li { display: flex; align-items: center; gap: 6px; }
+.legend-swatch {
+  width: 16px; height: 16px; border-radius: 4px; border: 2px solid var(--door-border);
+  background: var(--door-bg); display: inline-block;
+}
+.legend-swatch.door-opened { background: var(--door-opened); border-style: dashed; transform: none; }
+.legend-swatch.door-locked { opacity: 0.5; }
+
+/* ---- Karten & Detail ---- */
+
+.card {
+  background: var(--card-bg); color: var(--card-text); border-radius: 16px;
+  padding: 18px; margin-top: 16px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.door-detail-header { display: flex; justify-content: space-between; align-items: center; }
+.back {
+  background: var(--card-bg); color: var(--card-text); border: 0; border-radius: 999px;
+  padding: 10px 16px; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.door-detail-number {
+  font-size: 56px; font-weight: 800; color: var(--accent); text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.door-content img { width: 100%; height: auto; border-radius: 10px; display: block; }
+.door-content blockquote {
+  margin: 0; padding: 12px 4px 4px; font-size: 20px; line-height: 1.5; white-space: pre-wrap;
+  font-family: Georgia, 'Times New Roman', serif; overflow-wrap: anywhere;
+}
+.door-content img + blockquote { margin-top: 12px; }
+.lock-big { font-size: 48px; text-align: center; margin: 0; }
+
+/* ---- Anmeldung ---- */
+
+.subscribe h2 { margin: 0 0 8px; font-size: 18px; }
+.subscribe p { line-height: 1.45; }
+.subscribe form { display: flex; gap: 8px; flex-wrap: wrap; }
+.subscribe input {
+  flex: 1 1 200px; min-width: 0; padding: 12px; border-radius: 10px; border: 1px solid #c9bba9; font-size: 16px;
+}
+.subscribe button {
+  flex: 0 0 auto; padding: 12px 18px; border: 0; border-radius: 10px; background: #b3261e; color: #fff;
+  font-weight: 700; cursor: pointer;
+}
+.subscribe button:disabled { opacity: 0.6; }
+.error { color: #b3261e; }
+.fineprint { font-size: 12px; color: #7a6a5a; margin-bottom: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .door, .door-today, .loading { animation: none; transition: none; }
+}

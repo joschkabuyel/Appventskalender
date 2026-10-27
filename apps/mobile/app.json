@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Adventskalender",
+    "slug": "adventskalender",
+    "scheme": "adventskalender",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "de.adventskalender.app"
+    },
+    "android": {
+      "package": "de.adventskalender.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#B3261E",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Die App braucht Zugriff auf deine Fotos, damit du Bilder für deine Türchen auswählen kannst.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ]
+    ]
+  }
+}

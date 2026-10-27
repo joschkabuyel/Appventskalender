@@ -1,0 +1,14 @@
+{
+  "name": "appventskalender",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "npm run test -w @adventskalender/shared",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "web": "npm run dev -w web",
+    "mobile": "npm run start -w mobile"
+  }
+}
