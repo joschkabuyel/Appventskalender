@@ -82,7 +82,17 @@ cp apps/mobile/.env.example apps/mobile/.env   # Supabase + URL der Website eint
 npm run mobile                                  # Expo Dev Server, App „Expo Go“ auf Android scannen
 ```
 
-Installierbare APK bzw. Play-Store-Build über EAS: `npx eas-cli@latest build -p android --profile preview`. Vorher den Paketnamen `de.adventskalender.app` in `apps/mobile/app.json` anpassen.
+**Hinweis zu Expo Go:** Die Expo-Go-App aus dem Play Store unterstützt nicht immer das aktuelle SDK. Bietet `expo start` an, das Projekt auf ein älteres SDK „anzupassen“, unbedingt **ablehnen**. Stattdessen einmalig einen Development-Build bauen (kostenlos in der Expo-Cloud):
+
+```bash
+cd apps/mobile
+npx eas-cli@latest login
+npx eas-cli@latest build -p android --profile development
+```
+
+Die fertige APK aufs Handy laden und installieren. Danach startet `npx expo start` den Dev-Server, und die installierte App verbindet sich damit (QR-Code mit der App oder der Kamera scannen).
+
+Eine installierbare Test-APK ohne Dev-Server baut `--profile preview`, die Play-Store-Version `--profile production`. Für diese beiden Profile müssen die `EXPO_PUBLIC_…`-Werte als EAS-Umgebungsvariablen hinterlegt sein (`npx eas-cli@latest env:create`), weil die `.env`-Datei nicht hochgeladen wird. Vorher den Paketnamen `de.adventskalender.app` in `apps/mobile/app.json` anpassen.
 
 ## Tests & Checks
 
