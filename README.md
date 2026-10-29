@@ -73,7 +73,7 @@ npm run web                               # http://localhost:5173/k/<share_token
 npm run build -w web                      # statische Dateien in apps/web/dist
 ```
 
-Hosting z. B. kostenlos über **Cloudflare Pages** oder **Netlify**. Die Datei `public/_redirects` sorgt dafür, dass Links wie `/k/abc` direkt funktionieren.
+Hosting kostenlos über **Cloudflare Workers** (Workers & Pages → Create → Repository verbinden). Build command: `npm run build -w web`, Deploy command: `npx wrangler deploy`. Als Build-Variablen `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` und `NODE_VERSION=22` setzen. Die Datei `wrangler.jsonc` sorgt dafür, dass Links wie `/k/abc` direkt funktionieren.
 
 ### 3. App (apps/mobile)
 
@@ -109,7 +109,7 @@ Alles läuft in kostenlosen Plänen, mit diesen Grenzen:
 
 - **Supabase Free:** 500 MB Datenbank, 1 GB Dateispeicher (bei ~300 KB pro Foto etwa 3.000 Fotos), 5 GB Traffic pro Monat. **Achtung:** Kostenlose Projekte werden nach 7 Tagen ohne Aktivität pausiert. Vor allem zwischen Erstellung und Dezember sollte das Projekt regelmäßig genutzt werden.
 - **Resend Free:** 3.000 Mails pro Monat, **100 pro Tag**. Das reicht für etwa 100 angemeldete Empfänger insgesamt. Darüber hinaus ist ein bezahlter Plan oder ein anderer Anbieter nötig (der Versand ist in `supabase/functions/_shared/mail.ts` gekapselt).
-- **Cloudflare Pages / Netlify:** kostenlos für diese Website.
+- **Cloudflare Workers:** kostenlos für diese Website.
 - **Google Play:** einmalig 25 US-$ für das Entwicklerkonto, falls die App in den Store soll. Eine APK lässt sich auch direkt verteilen.
 
 ## Noch offen / nächste Schritte
