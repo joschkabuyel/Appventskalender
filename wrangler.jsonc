@@ -1,0 +1,11 @@
+// Cloudflare Workers: liefert die gebaute Empfänger-Website (apps/web) als statische Seite aus.
+// Build-Befehl in Cloudflare: npm run build -w web
+{
+  "name": "appventskalender",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./apps/web/dist",
+    // Links wie /k/<token>/5 liefern index.html aus, das Routing übernimmt die Seite selbst.
+    "not_found_handling": "single-page-application"
+  }
+}
